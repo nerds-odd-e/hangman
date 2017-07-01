@@ -1,0 +1,16 @@
+task ci {
+    runInSequence(it, "clean", "check", "cucumber")
+}
+
+cucumber {
+    jvmOptions {
+        environment "SPRING_PROFILES_ACTIVE", "test"
+        commandLineArg "port", { port ->
+            environment "SERVER_PORT", port
+        }
+    }
+}
+
+test {
+    environment "SPRING_PROFILES_ACTIVE", "test"
+}

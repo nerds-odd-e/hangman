@@ -1,0 +1,17 @@
+
+# Created by https://www.gitignore.io/api/intellij,gradle
+
+### Intellij ###
+# The whole .idea folder should be ignored as we don't submit the project config file .iml
+.idea
+
+## File-based project format:
+*.iml
+
+# IntelliJ
+/out/
+
+### Gradle ###
+.gradle
+.gradletasknamecache
+/build/

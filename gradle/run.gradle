@@ -1,0 +1,10 @@
+task run {
+    runInSequence(it, "clean", "bootRun")
+}
+
+bootRun {
+    environment "SPRING_PROFILES_ACTIVE", "dev"
+    commandLineArg "port", { port ->
+        environment "SERVER_PORT", port
+    }
+}
