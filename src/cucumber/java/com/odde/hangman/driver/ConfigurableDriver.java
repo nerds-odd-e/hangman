@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class ConfigurableDriver implements Driver {
     private static final String DELIMITER = ":";
     private static final String HOST_NAME = "http://localhost";
     private static final int DEFAULT_TIME_OUT_IN_SECONDS = 10;
-    private final WebDriver webDriver = new FirefoxDriver();
+    private final WebDriver webDriver = new ChromeDriver();
 
     @Override
     public void close() {
