@@ -30,6 +30,7 @@ Use git to clone this project into a folder. Then in this folder, run the comman
 * Run Unit Tests. Run those unit tests as normal.
 * Run Acceptance Tests (cucumber). In feature file, you can select the feature or one scenario and then run it. In the configuration, you need to set environment variable "SPRING_PROFILES_ACTIVE" to "test"
 * [Spring Boot Developer Tools](http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html) is used so that you can hot load any modified code, template file and resource file without restart the application. Please follow the steps below to enable this hot load feature.
+    * Enable the "build project automatically" option of compiler in Intellij
     * Start the application in Intellij as described in the first item. Don't start it with gradle in command line.
     * Edit any code or file, and make the project. Then, the change will be reloaded automatically.
     * You can install a Chrome extension called [Live Reload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) so that the tab (in which this application is opened) will be refreshed automatically.
