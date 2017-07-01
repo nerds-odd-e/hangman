@@ -1,4 +1,4 @@
-package com.odde.hangman.acceptancetest;
+package com.odde.hangman.steps;
 
 import com.odde.hangman.Application;
 import org.springframework.boot.test.context.SpringBootTest;
