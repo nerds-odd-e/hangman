@@ -4,26 +4,26 @@ repositories {
 
 dependencies {
     compile(
-            "org.springframework.boot:spring-boot-starter-mustache:1.4.0.RELEASE",
-            "org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE",
-            "org.springframework.boot:spring-boot-devtools:1.4.0.RELEASE",
-            "com.github.mjeanroy:springmvc-mustache:0.5.3",
-            "org.projectlombok:lombok:1.16.10",
-            "org.webjars:bootstrap:3.3.7-1",
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-mustache'],
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-web'],
+            [group: 'org.springframework.boot', name: 'spring-boot-devtools'],
+            [group: 'com.github.mjeanroy', name: 'springmvc-mustache', version: libVersions.mustache],
+            [group: 'org.projectlombok', name: 'lombok', version: libVersions.lombok],
+            [group: 'org.webjars', name: 'bootstrap', version: libVersions.bootstrap],
     )
 
     testCompile (
-            "org.springframework:spring-tx:4.3.9.RELEASE",
-            "org.springframework.boot:spring-boot-starter-test:1.4.0.RELEASE",
-            "junit:junit:4.12",
-            "org.mockito:mockito-all:1.10.19",
-            "info.cukes:cucumber-java:1.2.5",
-            "info.cukes:cucumber-spring:1.2.5",
-            "org.seleniumhq.selenium:selenium-java:2.53.1",
-            "org.assertj:assertj-core:3.5.2",
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-test'],
+            [group: 'junit', name: 'junit', version: testLibVersions.junit],
+            [group: 'org.mockito', name: 'mockito-core', version: testLibVersions.mockito],
+            [group: 'info.cukes', name: 'cucumber-java', version: testLibVersions.cucumber],
+            [group: 'info.cukes', name: 'cucumber-spring', version: testLibVersions.cucumber],
+            [group: 'com.nitorcreations', name: 'junit-runners', version: testLibVersions.nestedrunner],
+            [group: 'org.assertj', name: 'assertj-core', version: testLibVersions.assertj],
+            [group: 'org.seleniumhq.selenium', name: 'selenium-java', version: testLibVersions.selenium],
     )
 
-    cucumberRuntime "info.cukes:cucumber-java:1.2.5"
+    cucumberRuntime ([group: 'info.cukes', name: 'cucumber-java', version: testLibVersions.cucumber])
 
 }
 
