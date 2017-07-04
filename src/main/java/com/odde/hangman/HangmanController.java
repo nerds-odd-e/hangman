@@ -23,8 +23,8 @@ public class HangmanController {
     }
 
     @PostMapping("/")
-    public String input(Model model) {
-        model.addAttribute("tries", 11);
-        return "index";
+    public String input(Model model, String character) {
+        hangman.input(character);
+        return home(model);
     }
 }
