@@ -20,6 +20,13 @@ public class HangmanSteps {
         driver.navigateTo("/");
     }
 
+    @When("^input a vowel \"([^\"]*)\"$")
+    public void input_a_vowel(String character) throws Throwable {
+        start_game();
+        driver.inputTextByName(character, "character");
+        driver.clickByText("Guess");
+    }
+
     @Then("^the tries is (\\d+)$")
     public void the_tries_is(int tries) throws Throwable {
         driver.waitForTextPresent(String.valueOf(tries));
