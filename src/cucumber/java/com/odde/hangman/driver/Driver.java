@@ -28,6 +28,14 @@ public class Driver {
     @Value("${cucumber.context-path}")
     private String contextPath;
 
+    public Driver() {
+    }
+
+    public Driver(String port, String contextPath) {
+        this.port = port;
+        this.contextPath = contextPath;
+    }
+
     public void close() {
         webDriver.close();
     }

@@ -1,6 +1,7 @@
 package com.odde.hangman.steps;
 
 import com.odde.hangman.data.GameState;
+import com.odde.hangman.driver.Driver;
 import com.odde.hangman.pages.HomePage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,6 +17,17 @@ public class HangmanSteps {
 
     @Given("^the word is \"([^\"]*)\"$")
     public void the_word_is(String arg1) throws Throwable {
+    }
+
+    @Given("^a player already start a game and input a vowel \"([^\"]*)\"$")
+    public void a_player_already_start_a_game_and_input_a_vowel(String character) throws Throwable {
+        input_a_vowel(character);
+    }
+
+    @When("^another player start the game$")
+    public void another_player_start_the_game() throws Throwable {
+        Driver driver = new Driver("8080", "/");
+        driver.navigateTo("/");
     }
 
     @When("^start game$")
