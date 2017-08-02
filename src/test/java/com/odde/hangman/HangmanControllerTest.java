@@ -26,7 +26,7 @@ public class HangmanControllerTest {
 
             input("a");
 
-            verify(mockModel).addAttribute("tries", "100");
+            verify(mockModel).addAttribute("tries", 100);
         }
 
         @Test
@@ -56,7 +56,7 @@ public class HangmanControllerTest {
         }
 
         private String home() {
-            return controller.home(mockModel, null);
+            return controller.home(mockModel);
         }
 
     }
