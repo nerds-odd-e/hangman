@@ -1,7 +1,7 @@
 package com.odde.hangman.steps;
 
 import com.odde.hangman.data.GameState;
-import com.odde.hangman.driver.Driver;
+import com.odde.hangman.pages.HomePage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,7 +12,7 @@ import java.util.List;
 public class HangmanSteps {
 
     @Autowired
-    Driver driver;
+    HomePage homePage;
 
     @Given("^the word is \"([^\"]*)\"$")
     public void the_word_is(String arg1) throws Throwable {
@@ -20,22 +20,17 @@ public class HangmanSteps {
 
     @When("^start game$")
     public void start_game() throws Throwable {
-        driver.navigateTo("/");
+        homePage.open();
     }
 
     @When("^input a vowel \"([^\"]*)\"$")
     public void input_a_vowel(String character) throws Throwable {
         start_game();
-        driver.inputTextByName(character, "character");
-        driver.clickByText("Guess");
+        homePage.input(character);
     }
 
     @Then("^the game state as below$")
     public void the_game_state_as_below(List<GameState> gameStates) throws Throwable {
-        GameState gameState = gameStates.get(0);
-        driver.waitForTextPresent(gameState.getTries());
-        driver.waitForTextPresent(gameState.getLengthOfWord());
-        driver.waitForTextPresent(gameState.getUsedChars());
-        driver.waitForTextPresent(gameState.getGuessedWord());
+        homePage.assertAllTextPresent(gameStates.get(0));
     }
 }
