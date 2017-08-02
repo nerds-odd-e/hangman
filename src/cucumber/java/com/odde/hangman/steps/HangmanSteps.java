@@ -1,10 +1,13 @@
 package com.odde.hangman.steps;
 
+import com.odde.hangman.data.GameState;
 import com.odde.hangman.driver.Driver;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class HangmanSteps {
 
@@ -27,23 +30,12 @@ public class HangmanSteps {
         driver.clickByText("Guess");
     }
 
-    @Then("^the tries is (\\d+)$")
-    public void the_tries_is(int tries) throws Throwable {
-        driver.waitForTextPresent(String.valueOf(tries));
-    }
-
-    @Then("^the length of word is (\\d+)$")
-    public void the_length_of_word_is(int wordLength) throws Throwable {
-        driver.waitForTextPresent(String.valueOf(wordLength));
-    }
-
-    @Then("^the used chars are \"([^\"]*)\"$")
-    public void the_used_chars_are(String used) throws Throwable {
-        driver.waitForTextPresent(used);
-    }
-
-    @Then("^the guessed word is \"([^\"]*)\"$")
-    public void the_guessed_word_is(String guessedWord) throws Throwable {
-        driver.waitForTextPresent(guessedWord);
+    @Then("^the game state as below$")
+    public void the_game_state_as_below(List<GameState> gameStates) throws Throwable {
+        GameState gameState = gameStates.get(0);
+        driver.waitForTextPresent(gameState.getTries());
+        driver.waitForTextPresent(gameState.getLengthOfWord());
+        driver.waitForTextPresent(gameState.getUsedChars());
+        driver.waitForTextPresent(gameState.getGuessedWord());
     }
 }
