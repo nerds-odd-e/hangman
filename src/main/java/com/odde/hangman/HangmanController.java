@@ -17,14 +17,18 @@ public class HangmanController {
     }
 
     @GetMapping("/")
-    public String home(Model model) {
-        model.addAttribute("tries", hangman.tries());
+    public String home(Model model, String tries) {
+        if (tries == null)
+            model.addAttribute("tries", 12);
+        else
+            model.addAttribute("tries", tries);
         return "index";
     }
 
     @PostMapping("/")
-    public String input(Model model, String character) {
+    public String input(Model model, String character, int tries) {
+        hangman.setTries(tries);
         hangman.input(character);
-        return home(model);
+        return home(model, String.valueOf(hangman.tries()));
     }
 }

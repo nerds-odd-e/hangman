@@ -26,7 +26,7 @@ public class HangmanControllerTest {
 
             input("a");
 
-            verify(mockModel).addAttribute("tries", 100);
+            verify(mockModel).addAttribute("tries", "100");
         }
 
         @Test
@@ -39,7 +39,7 @@ public class HangmanControllerTest {
         }
 
         private void input(String character) {
-            controller.input(mockModel, character);
+            controller.input(mockModel, character, 99);
         }
 
     }
@@ -48,15 +48,15 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_tries_when_start_game() {
-            givenStartGameWithTries(100);
+            givenStartGameWithTries(12);
 
             home();
 
-            verify(mockModel).addAttribute("tries", 100);
+            verify(mockModel).addAttribute("tries", 12);
         }
 
         private String home() {
-            return controller.home(mockModel);
+            return controller.home(mockModel, null);
         }
 
     }

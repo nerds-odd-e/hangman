@@ -14,4 +14,8 @@ public class Hangman {
     public void input(String character) {
         tries--;
     }
+
+    public void setTries(int tries) {
+
+    }
 }

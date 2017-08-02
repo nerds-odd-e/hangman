@@ -14,6 +14,7 @@ public class HangmanSteps {
 
     @Autowired
     HomePage homePage;
+    private Driver driver;
 
     @Given("^the word is \"([^\"]*)\"$")
     public void the_word_is(String arg1) throws Throwable {
@@ -26,7 +27,7 @@ public class HangmanSteps {
 
     @When("^another player start the game$")
     public void another_player_start_the_game() throws Throwable {
-        Driver driver = new Driver("8080", "/");
+        driver = new Driver("8080", "/");
         driver.navigateTo("/");
     }
 
@@ -44,5 +45,10 @@ public class HangmanSteps {
     @Then("^the game state as below$")
     public void the_game_state_as_below(List<GameState> gameStates) throws Throwable {
         homePage.assertAllTextPresent(gameStates.get(0));
+    }
+
+    @Then("^another player game state as below$")
+    public void another_player_game_state_as_below(List<GameState> gameStates) throws Throwable {
+        driver.waitForTextPresent(gameStates.get(0).getTries());
     }
 }
