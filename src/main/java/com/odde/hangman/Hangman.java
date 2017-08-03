@@ -6,18 +6,28 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static java.lang.Integer.parseInt;
+
 @Component
 @RequestScope
 public class Hangman {
 
-    private int tries = 12;
+    private int tries;
 
     @Autowired
     public Hangman(HttpServletRequest request) {
-        if (request.getParameter("tries") == null)
+        setTriesByRequest(request);
+    }
+
+    private void setTriesByRequest(HttpServletRequest request) {
+        if (triesOf(request) == null)
             tries = 12;
         else
-            tries = Integer.parseInt(request.getParameter("tries"));
+            tries = parseInt(triesOf(request));
+    }
+
+    private String triesOf(HttpServletRequest request) {
+        return request.getParameter("tries");
     }
 
     public int tries() {
@@ -28,7 +38,4 @@ public class Hangman {
         tries--;
     }
 
-    public void setTries(int tries) {
-
-    }
 }
