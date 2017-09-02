@@ -10,11 +10,13 @@ import static org.mockito.Mockito.*;
 @RunWith(NestedRunner.class)
 public class HangmanControllerTest {
 
+    public static final int ANY_TRIES = 100;
+    public static final int CURRENT_TRIES = 99;
     Hangman mockHangman = mock(Hangman.class);
     HangmanController controller = new HangmanController(mockHangman);
     Model mockModel = mock(Model.class);
 
-    private void givenStartGameWithTries(int value) {
+    private void givenTriesIs(int value) {
         when(mockHangman.tries()).thenReturn(value);
     }
 
@@ -22,16 +24,16 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_tries_when_input_a_char() {
-            givenStartGameWithTries(100);
+            givenTriesIs(ANY_TRIES);
 
             input("a");
 
-            verify(mockModel).addAttribute("tries", 100);
+            verify(mockModel).addAttribute("tries", ANY_TRIES);
         }
 
         @Test
         public void should_invoke_hangman_input_when_a_char() {
-            givenStartGameWithTries(99);
+            givenTriesIs(ANY_TRIES);
 
             input("a");
 
@@ -39,7 +41,7 @@ public class HangmanControllerTest {
         }
 
         private void input(String character) {
-            controller.input(mockModel, character, 99);
+            controller.input(mockModel, character, CURRENT_TRIES);
         }
 
     }
@@ -48,11 +50,11 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_tries_when_start_game() {
-            givenStartGameWithTries(12);
+            givenTriesIs(ANY_TRIES);
 
             home();
 
-            verify(mockModel).addAttribute("tries", 12);
+            verify(mockModel).addAttribute("tries", ANY_TRIES);
         }
 
         private String home() {
