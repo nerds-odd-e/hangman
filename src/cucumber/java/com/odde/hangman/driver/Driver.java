@@ -42,6 +42,7 @@ public class Driver {
 
     public void navigateTo(String url) {
         webDriver.get(urlWithHostAndPort(url));
+        webDriver.switchTo().window(webDriver.getWindowHandle());
     }
 
     public void waitForTextPresent(String text) {
