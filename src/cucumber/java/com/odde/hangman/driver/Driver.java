@@ -8,15 +8,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Component
-@Scope("cucumber-glue")
 public class Driver {
 
     private static final String DELIMITER = ":";
@@ -27,9 +23,6 @@ public class Driver {
     private String port;
     @Value("${cucumber.context-path}")
     private String contextPath;
-
-    public Driver() {
-    }
 
     public void close() {
         webDriver.close();

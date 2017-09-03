@@ -2,7 +2,6 @@ package com.odde.hangman.steps;
 
 import com.odde.hangman.Application;
 import com.odde.hangman.data.GameState;
-import com.odde.hangman.driver.Driver;
 import com.odde.hangman.pages.HomePage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -23,7 +22,7 @@ public class HangmanSteps {
     HomePage homePage;
 
     @Autowired
-    Driver anotherDriver;
+    HomePage anotherHomePage;
 
     @Given("^the word is \"([^\"]*)\"$")
     public void the_word_is(String arg1) throws Throwable {
@@ -36,7 +35,7 @@ public class HangmanSteps {
 
     @When("^another player start the game$")
     public void another_player_start_the_game() throws Throwable {
-        anotherDriver.navigateTo("/");
+        anotherHomePage.open();
     }
 
     @When("^start game$")
@@ -57,6 +56,6 @@ public class HangmanSteps {
 
     @Then("^another player game state as below$")
     public void another_player_game_state_as_below(List<GameState> gameStates) throws Throwable {
-        anotherDriver.waitForTextPresent(gameStates.get(0).getTries());
+        anotherHomePage.assertAllTextPresent(gameStates.get(0));
     }
 }
