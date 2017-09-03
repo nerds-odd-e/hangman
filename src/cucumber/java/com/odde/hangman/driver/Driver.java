@@ -31,11 +31,6 @@ public class Driver {
     public Driver() {
     }
 
-    public Driver(String port, String contextPath) {
-        this.port = port;
-        this.contextPath = contextPath;
-    }
-
     public void close() {
         webDriver.close();
     }
