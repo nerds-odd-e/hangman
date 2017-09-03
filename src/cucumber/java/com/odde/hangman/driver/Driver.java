@@ -1,9 +1,6 @@
 package com.odde.hangman.driver;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,8 +31,16 @@ public class Driver {
     }
 
     public void waitForTextPresent(String text) {
-        new WebDriverWait(webDriver, DEFAULT_TIME_OUT_IN_SECONDS).until(
-                (ExpectedCondition<Boolean>) webDriver -> getAllTextInPage().contains(text));
+        try {
+            new WebDriverWait(webDriver, DEFAULT_TIME_OUT_IN_SECONDS).until(
+                    (ExpectedCondition<Boolean>) webDriver -> getAllTextInPage().contains(text));
+        } catch (TimeoutException e) {
+            throw new TimeoutException(textNotFoundMessage(text));
+        }
+    }
+
+    private String textNotFoundMessage(String text) {
+        return String.format("Timed out after %d seconds waiting for \"%s\"", DEFAULT_TIME_OUT_IN_SECONDS, text);
     }
 
     public void inputTextByName(String text, String name) {
