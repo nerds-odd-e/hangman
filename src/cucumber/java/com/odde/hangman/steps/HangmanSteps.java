@@ -28,7 +28,7 @@ public class HangmanSteps {
     public void the_word_is(String arg1) throws Throwable {
     }
 
-    @Given("^a player already start a game and input a vowel \"([^\"]*)\"$")
+    @Given("^a player already start a game and input a wrong consonant \"([^\"]*)\"$")
     public void a_player_already_start_a_game_and_input_a_vowel(String character) throws Throwable {
         input_a_vowel(character);
     }
