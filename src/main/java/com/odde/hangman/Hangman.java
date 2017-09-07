@@ -18,10 +18,10 @@ public class Hangman {
 
     @Autowired
     public Hangman(HttpServletRequest request) {
-        setTriesByRequest(request);
+        setGameStateByRequest(request);
     }
 
-    private void setTriesByRequest(HttpServletRequest request) {
+    private void setGameStateByRequest(HttpServletRequest request) {
         initUsedChars(request);
         initTries(request);
     }
