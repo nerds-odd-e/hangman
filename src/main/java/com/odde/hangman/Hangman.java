@@ -38,4 +38,7 @@ public class Hangman {
         tries--;
     }
 
+    public int length() {
+        return 7;
+    }
 }

@@ -19,6 +19,7 @@ public class HangmanController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("tries", hangman.tries());
+        model.addAttribute("length", hangman.length());
         return "index";
     }
 

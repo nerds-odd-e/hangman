@@ -23,7 +23,7 @@ public class HangmanTest {
         when(stubHttpServletRequest.getParameter("tries")).thenReturn(tries);
     }
 
-    public class TriesSetByRequest {
+    public class GameStateSetByRequest {
 
         @Test
         public void should_be_from_request_if_set() {
@@ -33,10 +33,11 @@ public class HangmanTest {
         }
 
         @Test
-        public void should_be_12_when_start_game() {
+        public void should_be_initial_state_when_start_game() {
             givenRequestWithTries(null);
 
             assertThat(createHangman().tries()).isEqualTo(12);
+            assertThat(createHangman().length()).isEqualTo(7);
         }
     }
 
