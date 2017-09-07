@@ -43,7 +43,7 @@ public class HangmanSteps {
         homePage.open();
     }
 
-    @When("^input a vowel \"([^\"]*)\"$")
+    @When("^input a character \"([^\"]*)\"$")
     public void input_a_vowel(String character) throws Throwable {
         start_game();
         homePage.input(character);
