@@ -14,6 +14,7 @@ public class Hangman {
 
     private int tries;
     private String usedChars;
+    private String word = "tuesday";
 
     @Autowired
     public Hangman(HttpServletRequest request) {
@@ -52,14 +53,23 @@ public class Hangman {
     }
 
     public void input(String character) {
-        tries--;
-       
-        if (!usedChars.contains(character))
+        if (isCharNotInWord(character) || isCharUsed(character))
+            tries--;
+
+        if (!isCharUsed(character))
             usedChars += character;
     }
 
+    private boolean isCharUsed(String character) {
+        return usedChars.contains(character);
+    }
+
+    private boolean isCharNotInWord(String character) {
+        return !word.contains(character);
+    }
+
     public int length() {
-        return 7;
+        return word.length();
     }
 
     public String usedChars() {

@@ -70,11 +70,35 @@ public class HangmanTest {
 
     public class TriesChangeByInput {
 
+        Hangman hangman = hangmanWhenGameJustStarted();
+
         @Test
         public void should_decrease_when_input_a_vowel() {
-            Hangman hangman = hangmanWhenGameJustStarted();
+            hangman.input("i");
 
-            hangman.input("a");
+            assertThat(hangman.tries()).isEqualTo(11);
+        }
+
+        @Test
+        public void should_decrease_when_input_a_wrong_consonant() {
+            hangman.input("f");
+
+            assertThat(hangman.tries()).isEqualTo(11);
+        }
+
+        @Test
+        public void should_not_change_when_input_a_correct_consonant() {
+            hangman.input("t");
+
+            assertThat(hangman.tries()).isEqualTo(12);
+        }
+
+        @Test
+        public void should_decrease_when_input_a_character_already_used() {
+            givenRequestWithGameState("12", "aeiout");
+            hangman = createHangman();
+
+            hangman.input("t");
 
             assertThat(hangman.tries()).isEqualTo(11);
         }

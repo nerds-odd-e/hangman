@@ -20,3 +20,10 @@ Feature: Hangman
     Then the game state as below
       | tries | length of word | used chars | guessed word |
       | 11    | 7              | aeiouc     | _ue__a_      |
+
+  Scenario: Input a correct consonant
+    Given the word is "tuesday"
+    When input a character "t"
+    Then the game state as below
+      | tries | length of word | used chars | guessed word |
+      | 12    | 7              | aeiout     |              |
