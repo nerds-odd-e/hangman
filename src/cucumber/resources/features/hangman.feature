@@ -13,3 +13,10 @@ Feature: Hangman
     Then the game state as below
       | tries | length of word | used chars | guessed word |
       | 11    | 7              | aeiou      | _ue__a_      |
+
+  Scenario: Input a wrong consonant
+    Given the word is "tuesday"
+    When input a vowel "c"
+    Then the game state as below
+      | tries | length of word | used chars | guessed word |
+      | 11    | 7              | aeiouc     | _ue__a_      |

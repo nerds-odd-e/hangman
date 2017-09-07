@@ -19,26 +19,52 @@ public class HangmanTest {
         return new Hangman(stubHttpServletRequest);
     }
 
-    private void givenRequestWithTries(String tries) {
+    private void givenRequestWithGameState(String tries, String usedChars) {
         when(stubHttpServletRequest.getParameter("tries")).thenReturn(tries);
+        when(stubHttpServletRequest.getParameter("usedChars")).thenReturn(usedChars);
+    }
+
+    private Hangman hangmanWhenGameJustStarted() {
+        givenRequestWithGameState(null, null);
+        return new Hangman(stubHttpServletRequest);
     }
 
     public class GameStateSetByRequest {
 
         @Test
         public void should_be_from_request_if_set() {
-            givenRequestWithTries("10");
+            givenRequestWithGameState("10", "aeiouc");
 
             assertThat(createHangman().tries()).isEqualTo(10);
+            assertThat(createHangman().usedChars()).isEqualTo("aeiouc");
         }
 
         @Test
         public void should_be_initial_state_when_start_game() {
-            givenRequestWithTries(null);
+            givenRequestWithGameState(null, null);
 
             assertThat(createHangman().tries()).isEqualTo(12);
             assertThat(createHangman().length()).isEqualTo(7);
             assertThat(createHangman().usedChars()).isEqualTo("aeiou");
+        }
+    }
+
+    public class UsedCharsChangeByInput {
+
+        Hangman hangman = hangmanWhenGameJustStarted();
+
+        @Test
+        public void should_append_character_when_input_is_not_used_yet() {
+            hangman.input("d");
+
+            assertThat(hangman.usedChars()).isEqualTo("aeioud");
+        }
+
+        @Test
+        public void should_not_append_character_when_input_is_already_used() {
+            hangman.input("a");
+
+            assertThat(hangman.usedChars()).isEqualTo("aeiou");
         }
     }
 
@@ -51,11 +77,6 @@ public class HangmanTest {
             hangman.input("a");
 
             assertThat(hangman.tries()).isEqualTo(11);
-        }
-
-        private Hangman hangmanWhenGameJustStarted() {
-            givenRequestWithTries(null);
-            return new Hangman(stubHttpServletRequest);
         }
 
     }

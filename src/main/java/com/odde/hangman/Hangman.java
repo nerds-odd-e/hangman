@@ -13,6 +13,7 @@ import static java.lang.Integer.parseInt;
 public class Hangman {
 
     private int tries;
+    private String usedChars;
 
     @Autowired
     public Hangman(HttpServletRequest request) {
@@ -20,10 +21,26 @@ public class Hangman {
     }
 
     private void setTriesByRequest(HttpServletRequest request) {
+        initUsedChars(request);
+        initTries(request);
+    }
+
+    private void initTries(HttpServletRequest request) {
         if (triesOf(request) == null)
             tries = 12;
         else
             tries = parseInt(triesOf(request));
+    }
+
+    private void initUsedChars(HttpServletRequest request) {
+        if (usedCharsOf(request) == null)
+            usedChars = "aeiou";
+        else
+            usedChars = usedCharsOf(request);
+    }
+
+    private String usedCharsOf(HttpServletRequest request) {
+        return request.getParameter("usedChars");
     }
 
     private String triesOf(HttpServletRequest request) {
@@ -36,6 +53,9 @@ public class Hangman {
 
     public void input(String character) {
         tries--;
+       
+        if (!usedChars.contains(character))
+            usedChars += character;
     }
 
     public int length() {
@@ -43,6 +63,6 @@ public class Hangman {
     }
 
     public String usedChars() {
-        return "aeiou";
+        return usedChars;
     }
 }
