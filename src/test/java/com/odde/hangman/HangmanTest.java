@@ -38,6 +38,7 @@ public class HangmanTest {
 
             assertThat(createHangman().tries()).isEqualTo(12);
             assertThat(createHangman().length()).isEqualTo(7);
+            assertThat(createHangman().usedChars()).isEqualTo("aeiou");
         }
     }
 

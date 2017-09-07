@@ -20,6 +20,7 @@ public class HangmanController {
     public String home(Model model) {
         model.addAttribute("tries", hangman.tries());
         model.addAttribute("length", hangman.length());
+        model.addAttribute("usedChars", hangman.usedChars());
         return "index";
     }
 

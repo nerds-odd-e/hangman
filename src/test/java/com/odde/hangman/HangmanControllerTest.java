@@ -17,30 +17,32 @@ public class HangmanControllerTest {
     HangmanController controller = new HangmanController(mockHangman);
     Model mockModel = mock(Model.class);
 
-    private void givenGameStateIs(int tries, int length) {
+    private void givenGameStateIs(int tries, int length, String usedChars) {
         when(mockHangman.tries()).thenReturn(tries);
         when(mockHangman.length()).thenReturn(length);
+        when(mockHangman.usedChars()).thenReturn(usedChars);
     }
 
-    private void verifyAddAttributeForView(int tries, int length) {
+    private void verifyAddAttributeForView(int tries, int length, String usedChars) {
         verify(mockModel).addAttribute("tries", tries);
         verify(mockModel).addAttribute("length", length);
+        verify(mockModel).addAttribute("usedChars", usedChars);
     }
 
     public class Input {
 
         @Test
         public void should_set_game_state_when_input_a_char() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH);
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
 
             input("a");
 
-            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH);
+            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, "usedchars");
         }
 
         @Test
         public void should_invoke_hangman_input_when_a_char() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH);
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
 
             input("a");
 
@@ -57,11 +59,11 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_game_state_when_start_game() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH);
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
 
             home();
 
-            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH);
+            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, "usedchars");
         }
 
         private String home() {

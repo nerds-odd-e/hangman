@@ -41,4 +41,8 @@ public class Hangman {
     public int length() {
         return 7;
     }
+
+    public String usedChars() {
+        return "aeiou";
+    }
 }
