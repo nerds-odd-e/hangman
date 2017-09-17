@@ -1,6 +1,7 @@
-package com.odde.hangman;
+package com.odde.hangman.controller;
 
 import com.nitorcreations.junit.runners.NestedRunner;
+import com.odde.hangman.domain.Hangman;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.ui.Model;

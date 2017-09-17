@@ -1,4 +1,4 @@
-package com.odde.hangman;
+package com.odde.hangman.domain;
 
 import com.nitorcreations.junit.runners.NestedRunner;
 import org.junit.Test;

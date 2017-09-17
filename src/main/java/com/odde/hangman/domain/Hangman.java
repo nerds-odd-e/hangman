@@ -1,4 +1,4 @@
-package com.odde.hangman;
+package com.odde.hangman.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
