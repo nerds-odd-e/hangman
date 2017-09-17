@@ -26,7 +26,7 @@ public class HangmanController {
     }
 
     @PostMapping("/")
-    public String input(Model model, String character, int tries) {
+    public String input(Model model, String character) {
         hangman.input(character);
         return home(model);
     }

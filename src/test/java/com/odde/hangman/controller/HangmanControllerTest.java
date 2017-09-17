@@ -51,7 +51,7 @@ public class HangmanControllerTest {
         }
 
         private void input(String character) {
-            controller.input(mockModel, character, CURRENT_TRIES);
+            controller.input(mockModel, character);
         }
 
     }
