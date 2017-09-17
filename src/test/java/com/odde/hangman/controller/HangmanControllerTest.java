@@ -12,8 +12,8 @@ import static org.mockito.Mockito.*;
 public class HangmanControllerTest {
 
     private static final int ANY_LENGTH = 10;
-    private static final int CURRENT_TRIES = 99;
     private static final int ANY_TRIES = 100;
+    private static final String ANY_USED_CHARS = "usedchar";
     Hangman mockHangman = mock(Hangman.class);
     HangmanController controller = new HangmanController(mockHangman);
     Model mockModel = mock(Model.class);
@@ -34,16 +34,16 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_game_state_when_input_a_char() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, ANY_USED_CHARS);
 
             input("a");
 
-            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, "usedchars");
+            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, ANY_USED_CHARS);
         }
 
         @Test
         public void should_invoke_hangman_input_when_a_char() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, ANY_USED_CHARS);
 
             input("a");
 
@@ -60,11 +60,11 @@ public class HangmanControllerTest {
 
         @Test
         public void should_set_game_state_when_start_game() {
-            givenGameStateIs(ANY_TRIES, ANY_LENGTH, "usedchars");
+            givenGameStateIs(ANY_TRIES, ANY_LENGTH, ANY_USED_CHARS);
 
             home();
 
-            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, "usedchars");
+            verifyAddAttributeForView(ANY_TRIES, ANY_LENGTH, ANY_USED_CHARS);
         }
 
         private String home() {
