@@ -12,8 +12,7 @@ import java.util.stream.Stream;
 
 public class Driver {
 
-    private static final String DELIMITER = ":";
-    private static final String HOST_NAME = "http://localhost";
+    private static final String HOST_NAME_PREFIX = "http://localhost:";
     private static final int DEFAULT_TIME_OUT_IN_SECONDS = 10;
     private final WebDriver webDriver = new ChromeDriver();
     @Value("${cucumber.port}")
@@ -87,6 +86,6 @@ public class Driver {
     }
 
     private String urlWithHostAndPort(String url) {
-        return HOST_NAME + DELIMITER + port + contextPath + url;
+        return HOST_NAME_PREFIX + port + contextPath + url;
     }
 }
