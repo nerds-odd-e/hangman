@@ -1,0 +1,10 @@
+---
+
+- name: deploys the sites
+  hosts: all
+  remote_user: root
+  any_errors_fatal: true
+  roles:
+    - role: common
+    - role: backend_server
+      service: Hangman_by_GOOS

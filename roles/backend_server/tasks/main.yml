@@ -1,0 +1,16 @@
+- name: copies the {{service}} jar file over
+  synchronize: src=build/libs/{{service}}.jar dest={{project_dir}}/{{service}}/{{service}}-{{timestamp}}.jar checksum=yes group=no owner=no
+
+- name: unlink the current jar file
+  file: path={{project_dir}}/{{service}}/{{service}}.jar state=absent
+
+- name: link to the newly deployed jar file
+  file: path={{project_dir}}/{{service}}/{{service}}.jar src={{service}}-{{timestamp}}.jar state=link
+
+- name: restart {{service}} service
+  docker_service:
+    project_src: "{{project_dir}}"
+    services:
+      - "{{service}}"
+    restarted: true
+    state: present
