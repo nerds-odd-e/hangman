@@ -8,13 +8,7 @@ plugins {
     id "java"
     id "com.github.samueltbrown.cucumber" version "0.9"
     id "idea"
-    id "war"
     id 'org.springframework.boot' version '1.5.4.RELEASE'
-}
-
-war {
-    baseName = "bbuddy"
-    version =  "HEAD"
 }
 
 apply from: "gradle/versions.gradle"
