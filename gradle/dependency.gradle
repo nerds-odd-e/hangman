@@ -10,6 +10,7 @@ dependencies {
             [group: 'com.github.mjeanroy', name: 'springmvc-mustache', version: libVersions.mustache],
             [group: 'org.projectlombok', name: 'lombok', version: libVersions.lombok],
             [group: 'org.webjars', name: 'bootstrap', version: libVersions.bootstrap],
+            [group: 'org.webjars', name: 'jquery', version: libVersions.jquery],
     )
 
     testCompile (
