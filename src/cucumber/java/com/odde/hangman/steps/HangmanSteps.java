@@ -21,9 +21,6 @@ public class HangmanSteps {
     @Autowired
     HomePage homePage;
 
-    @Autowired
-    HomePage anotherHomePage;
-
     @Given("^the word is \"([^\"]*)\"$")
     public void the_word_is(String arg1) throws Throwable {
     }
@@ -31,11 +28,6 @@ public class HangmanSteps {
     @Given("^a player already start a game and input a wrong consonant \"([^\"]*)\"$")
     public void a_player_already_start_a_game_and_input_a_vowel(String character) throws Throwable {
         input_a_vowel(character);
-    }
-
-    @When("^another player start the game$")
-    public void another_player_start_the_game() throws Throwable {
-        anotherHomePage.open();
     }
 
     @When("^start game$")
@@ -54,8 +46,4 @@ public class HangmanSteps {
         homePage.assertAllTextPresent(gameStates.get(0));
     }
 
-    @Then("^another player game state as below$")
-    public void another_player_game_state_as_below(List<GameState> gameStates) throws Throwable {
-        anotherHomePage.assertAllTextPresent(gameStates.get(0));
-    }
 }
